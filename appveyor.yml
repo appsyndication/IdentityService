@@ -1,0 +1,68 @@
+- # Master build and deploy.
+  branches:
+    only:
+      - master
+
+  version: 0.1.0-build-{build}
+
+  configuration: Release
+
+  environment:
+    DNX_BUILD_VERSION: build-%APPVEYOR_BUILD_NUMBER%
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    NUGET_XMLDOC_MODE: skip
+    GITHUB_ACCESS_TOKEN:
+      secure: DcAkF5ZAi8KAtzqJRXwWm6GAXrvkpF8Wd2M5I4O3TYPrdRpyoZIhh/ZnFJgITlEC
+
+  before_build:
+    - dotnet restore
+
+  build_script:
+    - appveyor.cmd
+
+  artifacts:
+    - path: artifacts\deploy\
+      name: deploy-artifacts
+    - path: artifacts\public\**\*.nupkg
+      name: public-artifacts
+
+  deploy:
+    - provider: WebDeploy
+      server: https://as-id.scm.azurewebsites.net:443/msdeploy.axd?site=as-id
+      website: as-id
+      username: $as-id
+      password:
+        secure: 3z9zgZp5MFxZIPfS473pKEh6RBN4/C82FNAuyaWbZx5ie+hz0AUq0x9R6DpLpxA3k5He4LSgt+Zw+GWhdUARTQ==
+      remove_files: true
+      app_offline: true
+      artifact: deploy-artifacts
+
+  on_success:
+    - git config --global credential.helper store
+    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
+    - git config --global user.email "a@appsyndication.com"
+    - git config --global user.name "Apps-Bot"
+    - git tag -a v%APPVEYOR_BUILD_VERSION% -m "Build v%APPVEYOR_BUILD_VERSION%"
+    - git push --tags origin HEAD:master
+
+  skip_tags: true
+
+- # Development branches build.
+  version: 0.1.0-build-{branch}-{build}
+
+  configuration: Debug
+
+  environment:
+    DNX_BUILD_VERSION: build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER%
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    NUGET_XMLDOC_MODE: skip
+
+  before_build:
+    - dotnet restore
+
+  build_script:
+    - appveyor.cmd
+
+  skip_tags: true

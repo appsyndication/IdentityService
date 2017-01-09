@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91073BF1-187C-420D-ACE1-40D705F2318B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{18CDAE95-DCE8-4F5D-B40C-04ADDF55865D}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.cmd = appveyor.cmd
+		appveyor.yml = appveyor.yml
+		global.json = global.json
+		IdentityService.System.props = IdentityService.System.props
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.IdentityService.Web", "src\AppSyndication.IdentityService.Web\AppSyndication.IdentityService.Web.xproj", "{C083EC0E-E9C5-489D-A6A6-34CED347CCEC}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.Shared.Model", "..\Shared\src\AppSyndication.Shared.Model\AppSyndication.Shared.Model.xproj", "{DF279011-EE93-4974-8675-2BF98BED9E49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C083EC0E-E9C5-489D-A6A6-34CED347CCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C083EC0E-E9C5-489D-A6A6-34CED347CCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C083EC0E-E9C5-489D-A6A6-34CED347CCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C083EC0E-E9C5-489D-A6A6-34CED347CCEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C083EC0E-E9C5-489D-A6A6-34CED347CCEC} = {91073BF1-187C-420D-ACE1-40D705F2318B}
+	EndGlobalSection
+EndGlobal
