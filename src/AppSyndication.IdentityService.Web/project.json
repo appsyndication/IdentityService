@@ -10,7 +10,7 @@
     "Microsoft.Extensions.Logging.Console": "1.1.0",
 
     "IdentityServer4": "1.0.0",
-    "AppSyndication.Shared.Model": "0.1.0-build-1"
+    "AppSyndication.Shared.Models": "0.1.0-build-1"
   },
 
   "tools": {
